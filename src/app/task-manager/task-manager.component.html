@@ -1,0 +1,30 @@
+<div *ngIf="!showForm">
+  <h3>Task List</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Task#</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Status</th>
+        <th scope="col">Description</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasksArray">
+        <th scope="row">{{task.id}}</th>
+        <td>{{task.priority}}</td>
+        <td>{{task.status}}</td>
+        <td>{{task.description}}</td>
+        <td><button class="btn btn-warning" (click)="updateTask(task.name)">Update</button> | <button class="btn btn-danger" (click)="removeTask(task.name)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-success" (click) ="addNew()">Add New task</button>
+</div>
+<div *ngIf="showForm">
+  <app-task-from
+    [taskToUpdate]="taskToUpdate"
+    (ngSubmit)="submitForm($event)">
+  </app-task-from>
+</div>
